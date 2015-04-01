@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 	get '/access/normal',to: 'sessions#new', as: 'login'
 	post '/access/normal',to: 'sessions#create'
 
+	get 'angularjs/templates/:page',to: 'angularjs#index'
+
 end

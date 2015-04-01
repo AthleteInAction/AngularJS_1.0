@@ -12,7 +12,10 @@
 		<alert type="<%= type %>"><%= message %></alert>
 	<% end %>
 
-	<%= yield %>
+	Logged in as <%= current_user.email %>.
+	<%= link_to "Log Out", logout_path %>
+
+	<div ng:view></div>
 
 </body>
 </html>

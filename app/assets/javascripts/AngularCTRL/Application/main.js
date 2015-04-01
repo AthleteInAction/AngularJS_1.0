@@ -4,11 +4,12 @@ App.config(['$routeProvider','$locationProvider',function($routeProvider,$locati
 
 	// html5Mode: true;
 
-	// $routeProvider.when('/home',{
-	// 	templateUrl : '/angularjs/templates/home.html',
-	// 	controller: HomeCtrl
-	// }).otherwise({
-	// 	redirectTo: '/home'
-	// });
+	$routeProvider
+	/* MARKER */
+	.otherwise({
+		
+		redirectTo: '/'
+
+	});
 	
 }]);
