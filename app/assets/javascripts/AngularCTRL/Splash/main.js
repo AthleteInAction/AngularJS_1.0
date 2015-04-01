@@ -3,12 +3,5 @@ App.value('$anchorScroll',angular.noop);
 App.config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
 	
 	// html5Mode: true;
-
-	// $routeProvider.when('/home',{
-	// 	templateUrl : '/angularjs/templates/home.html',
-	// 	controller: HomeCtrl
-	// }).otherwise({
-	// 	redirectTo: '/home'
-	// });
 	
 }]);
