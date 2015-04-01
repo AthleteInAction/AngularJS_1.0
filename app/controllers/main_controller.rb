@@ -26,7 +26,7 @@ class MainController < ApplicationController
 
 			session[:user_id] = @user.id
 
-			redirect_to root_url, notice: "Thank you for signing up!"
+			redirect_to root_url,flash: {success: 'Thank you for signing up!'}
 
 		else
 
