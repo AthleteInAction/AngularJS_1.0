@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng:app="App">
+<head>
+  <title><%= TITLE %></title>
+  <%= stylesheet_link_tag    'application' %>
+  <%= javascript_include_tag 'application' %>
+  <%= csrf_meta_tags %>
+</head>
+<body ng:controller="MainCtrl">
+
+	{{users.list}}
+
+	<%= yield %>
+
+</body>
+</html>
