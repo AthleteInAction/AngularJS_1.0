@@ -6,5 +6,4 @@
 //= require ./AngularJS/angular-sanitize.js
 //= require ./AngularJS/ui-bootstrap-tpls-0.12.1.js
 //= require_tree ./AngularCTRL/Splash
-//= require_tree ./AngularTools
-//= require global
+//= require z_global

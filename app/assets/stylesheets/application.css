@@ -2,4 +2,5 @@
 *= require ./Bootstrap/bootstrap.css
 *= require_tree ./Application
 *= require_self
+*= require z_global
 */
