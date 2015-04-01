@@ -1,14 +1,16 @@
 <!DOCTYPE html>
-<html ng:app="App">
+<html ng:app="App" ng:controller="Ctrl">
 <head>
   <title><%= TITLE %></title>
   <%= stylesheet_link_tag    'application' %>
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
-<body ng:controller="MainCtrl">
+<body>
 
-	{{users.list}}
+	<% flash.each do |type,message| %>
+		<alert type="<%= type %>"><%= message %></alert>
+	<% end %>
 
 	<%= yield %>
 

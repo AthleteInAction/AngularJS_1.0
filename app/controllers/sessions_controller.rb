@@ -16,11 +16,11 @@ class SessionsController < ApplicationController
 
 			session[:user_id] = user.id
 
-			redirect_to root_url, notice: 'Logged in!'
+			redirect_to root_url, flash: {success: 'Logged in!'}
 
 		else
 
-			flash.now.alert = 'Email or password is invalid'
+			flash[:danger] = 'Email or password is invalid'
 
 			render 'login',layout: 'splash'
 
@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
 
 		session.delete :user_id
 
-		redirect_to root_url
+		redirect_to root_url, flash: {warning: 'You have been logged out!'}
 
 	end
 

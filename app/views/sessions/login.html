@@ -1,7 +1,3 @@
-<% flash.each do |type,message| %>
-	<alert type="danger"><%= message %></alert>
-<% end %>
-
 <%= form_tag login_path do |f| %>
 	
 	<div class="form-group"><%= text_field_tag :email,nil,class: 'form-control' %></div>
@@ -9,3 +5,4 @@
 	<div class="form-group"><%= submit_tag 'Log In',class: 'btn btn-default' %></div>
 
 <% end %>
+<%= link_to "Sign Up", root_url %>

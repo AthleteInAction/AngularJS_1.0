@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 	root 'main#index'
 	post '/',to: 'main#create'
 
-	get '/access/signout',to: 'sessions#destory', as: 'signout'
+	get '/access/logout',to: 'sessions#destory', as: 'logout'
 	get '/access/normal',to: 'sessions#new', as: 'login'
 	post '/access/normal',to: 'sessions#create'
 
