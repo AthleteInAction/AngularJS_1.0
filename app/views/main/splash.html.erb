@@ -1,3 +1,4 @@
+<% if user_table %>
 <%= form_for @user,url: root_url do |f| %>
   
 
@@ -29,3 +30,4 @@
 
 <% end %>
 <%= link_to "Log In", login_path %>
+<% end %>

@@ -2,17 +2,16 @@ class ApiGenerator < Rails::Generators::Base
 
   source_root File.expand_path('../templates', __FILE__)
 
-  argument :layout_name,type: :string,required: true
-  argument :layout_version,type: :string,default: '1'
+  argument :controller_name,type: :string,required: true
+  argument :api_version,type: :string,default: '1'
 
   def generate
 
-  	template 'layout.rb',"app/controllers/api/v#{version}/#{name}_controller.rb"
+  	template 'controller.rb',"app/controllers/api/v#{version}/#{name}_controller.rb"
   	template 'factory.js',"app/assets/javascripts/AngularAPI/v#{version}/Factories/api_model.js"
   	template 'service.js',"app/assets/javascripts/AngularAPI/v#{version}/Services/#{name}.js"
 
   	routes_path = 'config/routes.rb'
-  	routes = File.read(routes_path).to_s
 
   	api = "\n\t\t\tresources :#{name},path: '#{name}s'"
   	insert_into_file routes_path,api,after: "# API INSERT"
@@ -32,13 +31,13 @@ class ApiGenerator < Rails::Generators::Base
 
   def name
 
-  	layout_name.underscore
+  	controller_name
 
   end
 
   def version
 
-  	layout_version
+  	api_version
 
   end
 

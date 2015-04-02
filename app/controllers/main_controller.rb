@@ -1,12 +1,12 @@
 class MainController < ApplicationController
 
-	skip_before_filter :authorize
+	skip_before_filter :authorize,:api_authorize
 	
 	def index
 
 		if current_user.nil?
 
-			@user = User.new
+			@user = User.new if user_table
 
 			render 'splash',layout: 'splash'
 

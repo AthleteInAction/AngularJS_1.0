@@ -13,7 +13,7 @@ module Api
 
   			@<%= name %>s = <%= name.capitalize %>.all
 
-  			respond_with <%= name %>s: @<%= name %>s
+  			respond_with @<%= name %>s,root: :<%= name %>s
 
   		end
   		# =================================================
@@ -41,15 +41,15 @@ module Api
 
   			@<%= name %> = <%= name.capitalize %>.find params[:id]
 
-			if @<%= name %>.update_attributes(params[:<%= name %>])
+        if @<%= name %>.update_attributes(params[:<%= name %>])
 
-				render json: {<%= name %>: @<%= name %>},status: 200
+          render json: @<%= name %>,status: 200
 
-			else
+        else
 
-				render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
+          render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
 
-			end
+        end
 
   		end
   		# =================================================
@@ -65,7 +65,7 @@ module Api
 
   			if @<%= name %>.save
 
-  				render json: {<%= name %>: @<%= name %>},status: 201
+  				render json: @<%= name %>,status: 201
 
   			else
 
@@ -81,19 +81,19 @@ module Api
   		# DELETE
   		# =================================================
   		# =================================================
-  		def destory
+  		def destroy
 
   			@<%= name %> = <%= name.capitalize %>.find params[:id]
 
-			if @<%= name %>.destroy
+        if @<%= name %>.destroy
 
-				render json: {<%= name %>: {id: params[:id].to_i}},status: 200
+          render json: {<%= name %>: {id: params[:id].to_i}},status: 200
 
-			else
+        else
 
-				render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
+          render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
 
-			end
+        end
 
   		end
   		# =================================================

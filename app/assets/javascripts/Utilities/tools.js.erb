@@ -1,7 +1,7 @@
 $('document').ready(function(){
 
 	var i = 0;
-	$('.alert').each(function(){
+	$('.alert:not(.forever)').each(function(){
 
 		var e = this;
 
@@ -62,4 +62,28 @@ function getCookie(cname){
 
 	return '';
 
+}
+Array.prototype.removeWhere = function(key,val){
+
+    for (i = 0; i < this.length; i++) {
+    	if (this[i][key] == val){
+
+    		this.splice(i,1);
+
+    	}
+    }
+
+}
+Array.prototype.contains = function(key,val){
+	
+	var has = false;
+
+    for (i = 0; i < this.length; i++) {
+    	if (this[i][key] == val){
+    		has = true;
+    		break;
+    	}
+    }
+
+    return has;
 }
