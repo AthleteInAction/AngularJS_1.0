@@ -9,6 +9,7 @@ class AjsGenerator < Rails::Generators::Base
 
   	template 'template.html',"app/views/angularjs/#{file_name}.html.erb"
   	template 'ctrl.js',"app/assets/javascripts/AngularCTRL/Application/#{name.capitalize}/#{file_name}.js"
+    template 'style.css',"app/assets/stylesheets/Application/#{name.capitalize}/#{file_name}.css.erb"
 
   	s1 = ",'#{file_name}'"
   	insert_into_file 'app/controllers/angularjs_controller.rb',s1,after: "list = ['blank'"
@@ -42,6 +43,7 @@ class AjsGenerator < Rails::Generators::Base
   	final = "#{layout_name}"
 
   	final << "/:id" if detail == 'show'
+    final << "/:id/edit" if detail == 'edit'
 
   	final
 

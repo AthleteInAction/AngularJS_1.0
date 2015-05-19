@@ -2,16 +2,21 @@ module Api
   module V1
   	class <%= name.capitalize %>Controller < ApplicationController
 
+      before_action :set_<%= name %>, only: [:show, :update, :destroy]
 
   		respond_to :json
-
 
   		# GET
   		# =================================================
   		# =================================================
   		def index
 
-  			@<%= name %>s = <%= name.capitalize %>.all
+        new_params = params.permit plist
+
+        q = "SELECT * FROM <%= name %>s"
+        q << Tools.query(new_params)
+
+  			@<%= name %>s = <%= name.capitalize %>.find_by_sql q
 
   			respond_with @<%= name %>s,root: :<%= name %>s
 
@@ -25,8 +30,6 @@ module Api
   		# =================================================
   		def show
 
-  			@<%= name %> = <%= name.capitalize %>.find params[:id]
-
   			respond_with @<%= name %>
 
   		end
@@ -39,15 +42,13 @@ module Api
   		# =================================================
   		def update
 
-  			@<%= name %> = <%= name.capitalize %>.find params[:id]
+        if @<%= name %>.update(<%= name %>_params)
 
-        if @<%= name %>.update_attributes(params[:<%= name %>])
-
-          render json: @<%= name %>,status: 200
+          render json: @<%= name %>,status: :ok
 
         else
 
-          render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
+          render json: {error: true,errors: @<%= name %>.errors},status: :unprocessable_entity
 
         end
 
@@ -61,15 +62,15 @@ module Api
   		# =================================================
   		def create
 
-  			@<%= name %> = <%= name.capitalize %>.new params[:<%= name %>]
+  			@<%= name %> = <%= name.capitalize %>.new <%= name %>_params
 
   			if @<%= name %>.save
 
-  				render json: @<%= name %>,status: 201
+  				render json: @<%= name %>,status: :created
 
   			else
 
-  				render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
+  				render json: {error: true,errors: @<%= name %>.errors},status: :unprocessable_entity
 
   			end
 
@@ -83,21 +84,34 @@ module Api
   		# =================================================
   		def destroy
 
-  			@<%= name %> = <%= name.capitalize %>.find params[:id]
-
         if @<%= name %>.destroy
 
-          render json: {<%= name %>: {id: params[:id].to_i}},status: 200
+          render json: {<%= name %>: {id: params[:id].to_i}},status: :ok
 
         else
 
-          render json: {error: true,errors: @<%= name %>.errors},status: unprocessable_entity
+          render json: {error: true,errors: @<%= name %>.errors},status: :unprocessable_entity
 
         end
 
   		end
   		# =================================================
   		# =================================================
+
+      private
+      # Use callbacks to share common setup or constraints between actions.
+      def set_<%= name %>
+        @<%= name %> = <%= name.capitalize %>.find params[:id]
+      end
+
+      # Never trust parameters from the scary internet, only allow the white list through.
+      def <%= name %>_params
+        params.require(:<%= name %>).permit plist
+      end
+
+      def plist
+        [:created_at, :updated_at]
+      end
 
   	end
   end

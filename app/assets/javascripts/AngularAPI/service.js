@@ -12,11 +12,14 @@ App.config(['$httpProvider',function($httpProvider){
 // API
 // ======================================================================
 // ======================================================================
-App.service('API',['BlankSVC',function(BlankSVC){
+angular.module('APIModule',['BlankModule'])
+.service('API',['BlankSVC',function(BlankSVC){
 
 	// INSERT HERE
 
 }]);
-App.service('BlankSVC',[function(){}]);
+// Placemarker
+angular.module('BlankModule',[])
+.service('BlankSVC',[function(){}]);
 // ======================================================================
 // ======================================================================

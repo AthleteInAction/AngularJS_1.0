@@ -19,6 +19,9 @@ class ApiGenerator < Rails::Generators::Base
   	s1 = "\n\tthis.#{name}s = #{name.capitalize}SVC.#{name}s;"
   	insert_into_file 'app/assets/javascripts/AngularAPI/service.js',s1,after: "// INSERT HERE"
 
+    ss2 = ",'#{name.capitalize}Module'"
+    insert_into_file 'app/assets/javascripts/AngularAPI/service.js',ss2,after: "['BlankModule'"
+
   	s2 = ",'#{name.capitalize}SVC'"
   	insert_into_file 'app/assets/javascripts/AngularAPI/service.js',s2,after: "['BlankSVC'"
 
